@@ -6,22 +6,22 @@ const services = [
   {
     title: "3D Printing",
     description: "We provide a wide variety of 3D printing materials and solutions for all your prototyping and manufacturing needs. Our selection of high-quality thermoplastics includes PLA, PETG, ASA, ABS, Polycarbonate (PC), Nylon, Carbon-Filled, and Woodfill, offering versatile options for different applications. Whether you're working on prototypes, custom designs, or low-volume production, we have the right material for your project. We also offer 3D metal printing services for producing durable parts.",
-    image: "/images/prototyping.jpg",
+    image: "/img/print-logo.webp",
   },
   {
     title: "3D Mapping and Reverse Engineering",
     description: "At North Texas Print, we utilize advanced 3D mapping technology to scan and replicate existing parts with precision. Whether you need to modify an existing component or replicate it exactly, our state-of-the-art scanning technology ensures accurate results every time. If you have a part you'd like to replicate or modify, our team is ready to assist. We also offer custom 3D design and engineering services, enabling us to create new parts from scratch tailored to your exact specifications.",
-    image: "/images/custom-manufacturing.jpg",
+    image: "/img/print-logo.webp",
   },
   {
     title: "Professional Laser Cutting & Engraving Services",
     description: "At North Texas Print, we offer laser cutting and laser engraving services using three different types of high-precision lasers. Our lasers can handle a wide variety of materials, allowing us to tackle almost any laser engraving or laser cutting task you can think of. We specialize in cutting and engraving on materials such as jewelry, wood, acrylic, glass, brass, guns, tumblers, and much more. Whether you need to engrave a custom design on a piece of jewelry or cut intricate shapes out of wood or acrylic, we have the tools and expertise to get the job done.",
-    image: "/images/design-support.jpg",
+    image: "/img/print-logo.webp",
   },
   {
     title: "Proof of Concept, Prototypes, & Invention Assistance Services",
     description: "At North Texas Print, we specialize in helping you transform your ideas into tangible assets. Whether you're looking to create a custom 3D printed part, a unique laser-engraved design, or a fully developed prototype, we have the tools and expertise to make it happen. Our team works closely with you to bring your creative concepts to life, turning them into high-quality, functional products. No idea is too big or small—if you can imagine it, we can create it.",
-    image: "/images/3d-scanning.jpg",
+    image: "/img/print-logo.webp",
   },
 ];
 
