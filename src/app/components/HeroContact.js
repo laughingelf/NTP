@@ -16,10 +16,10 @@ export default function HeroContact() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         <h1 className="text-5xl font-extrabold leading-tight">
-        Have Questions? We're Here to Help
+        Have Questions? We&apos;re Here to Help
         </h1>
         <p className="mt-6 text-lg text-white">
-            We’re ready to bring your ideas to life — reach out today
+            We&apos;re ready to bring your ideas to life — reach out today
         </p>
         <div className="mt-8 flex justify-center space-x-4">
           <Link href="/shop" className="px-6 py-3 bg-red-500 text-white text-md md:text-xl font-semibold rounded-lg shadow-md shadow-black hover:shadow-lg hover:text-black transition">
