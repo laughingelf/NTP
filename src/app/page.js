@@ -5,12 +5,14 @@ import HeroSection from "./components/HeroMain";
 import OurServices from "./components/OurServices";
 import WhyChooseUs from "./components/Why";
 import ContactSection from "./components/Contact";
+import HomeServices from "./components/HomeServices";
 
 export default function Home() {
   return (
     <Layout>
       <HeroSection/>
-      <OurServices/>
+      {/* <OurServices/> */}
+      <HomeServices/>
       <WhyChooseUs/>
       <ContactSection/>
     </Layout>

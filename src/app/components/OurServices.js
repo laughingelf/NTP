@@ -27,7 +27,7 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section className="w-full bg-black py-16">
+    <section className="w-full bg-black bg-[url('/img/services-bg.png')] bg-cover bg-right bg-no-repeat py-16">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center py-6 rounded-lg shadow-md shadow-gray-300 font-extrabold text-shadow-md/60 text-shadow-gray-500 bg-white align-center justify-center text-gray-800 mb-12">
           Our Services
@@ -45,8 +45,8 @@ export default function OurServices() {
                 <Image
                   src={service.image}
                   alt={service.title}
-                  width={450}
-                  height={300}
+                  width={600}
+                  height={600}
                   className="rounded-lg shadow-lg object-cover w-full h-full"
                 />
               </div>

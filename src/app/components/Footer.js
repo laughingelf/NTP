@@ -70,14 +70,21 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Extra (optional) */}
+        {/* Google Map Embed */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Hours</h3>
-          <ul className="space-y-2 text-gray-300">
-            <li>Mon-Fri: 9am - 6pm</li>
-            <li>Sat: 10am - 4pm</li>
-            <li>Sun: Closed</li>
-          </ul>
+          <h3 className="text-xl font-semibold mb-4">Find Us</h3>
+          <div className="rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.429805352931!2d-97.35537048481726!3d32.92325438092253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864dd8bb56f4c813%3A0xd5199e2efadf2fb9!2s1325%20Cattle%20Crossing%20Dr%2C%20Fort%20Worth%2C%20TX%2076131!5e0!3m2!1sen!2sus!4v1714428845678!5m2!1sen!2sus"
+              width="100%"
+              height="200"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="North Texas Print Location"
+            ></iframe>
+          </div>
         </div>
 
       </div>

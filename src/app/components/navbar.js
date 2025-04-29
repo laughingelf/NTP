@@ -29,6 +29,7 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex space-x-8 font-semibold items-center">
           <Link href="/" className="text-black hover:text-gray-900">Home</Link>
+          <Link href="/about" className="text-black hover:text-gray-900">About Us</Link>
           <Link href="/services" className="text-black hover:text-gray-900">Services</Link>
           <Link href="/shop" className="text-black hover:text-gray-900">Shop</Link>
           <Link href="/contact" className="text-black hover:text-gray-900">Contact</Link>
@@ -48,6 +49,7 @@ const Navbar = () => {
         <div className="md:hidden bg-gray-200 shadow-md font-semibold">
           <div className="flex flex-col items-center space-y-4 py-4">
             <Link href="/" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Home</Link>
+            <Link href="/about" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">About Us</Link>
             <Link href="/services" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Services</Link>
             <Link href="/shop" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Shop</Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Contact</Link>
