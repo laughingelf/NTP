@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import ProductsPage from "../components/ShopProducts";
 
 
 
@@ -6,6 +7,7 @@ import Layout from "../components/Layout";
 export default function Shop() {
     return (
         <Layout>
+            <ProductsPage/>
             
         </Layout>
     )
