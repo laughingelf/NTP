@@ -25,7 +25,7 @@ export default function HeroSection() {
           <Link href="/contact" className="px-6 py-3 bg-red-500 text-white text-md md:text-xl font-semibold rounded-lg shadow-md shadow-black hover:shadow-lg hover:text-black transition">
             Get A Free Quote
           </Link>
-          <Link href="/services" className="px-6 py-3 bg-red-500 text-white text-md md:text-xl font-semibold rounded-lg shadow-md shadow-black hover:shadow-lg hover:text-black transition">
+          <Link href="/shop" className="px-6 py-3 bg-red-500 text-white text-md md:text-xl font-semibold rounded-lg shadow-md shadow-black hover:shadow-lg hover:text-black transition">
             Check Out Our Shop
           </Link>
         </div>
