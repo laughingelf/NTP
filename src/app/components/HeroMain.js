@@ -18,7 +18,7 @@ export default function HeroSection() {
         <h1 className="text-5xl font-extrabold leading-tight">
           Precision 3D Printing Solutions in North Texas
         </h1>
-        <p className="mt-6 text-lg text-gray-300">
+        <p className="mt-6 text-xl text-gray-100">
           From prototypes to production — we bring your ideas to life with speed, accuracy, and quality you can trust.
         </p>
         <div className="mt-8 flex justify-center space-x-4">

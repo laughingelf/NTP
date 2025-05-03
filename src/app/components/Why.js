@@ -6,7 +6,7 @@ export default function WhyChooseUs() {
   return (
     <section className="w-full bg-gray-100 py-20">
       <div className="max-w-8xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12 underline">
           Why Choose North Texas Print
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
