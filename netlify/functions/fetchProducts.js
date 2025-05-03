@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 // WooCommerce API credentials
-const consumerKey = 'ck_d97041242cbb0700e1573ae6f6ca2405899f16b5';  
-const consumerSecret = 'cs_ec41916740ab65c6c1897ddff6e53053da988852';
+const consumerKey = 'process.env.CONSUMER_KEY';  
+const consumerSecret = 'process.env.CONSUMER_SECRET';
 const WooCommerceSite = 'https://northtexasprint.com'; 
 
 // Function to fetch products from WooCommerce API
