@@ -36,32 +36,27 @@ export default function ProductsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products
-        .filter(product => product.status === 'publish')
-        .map(product => (
-            <Link href={`/products/${product.id}`} key={product.id}>
-            <div className="bg-white rounded-lg shadow-md p-4">
-              <img
-                src={product.images?.[0]?.src}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded-md mb-4 text-black"
-              />
-              <h2 className="text-xl font-semibold text-black">{product.name}</h2>
-              <p
-                className="text-gray-700"
-                dangerouslySetInnerHTML={{ __html: product.price_html }}
-              />
-            </div>
-          </Link>
-          
-    //     <Link href={`/products/${product.id}`} key={product.id}>
-    //     <div className="p-4 bg-white shadow rounded hover:shadow-lg transition">
-    //       <img src={product.images[0].src} alt={product.name} className="h-48 w-full object-cover mb-2" />
-    //       <h2 className="text-lg font-bold">{product.name}</h2>
-    //       <div dangerouslySetInnerHTML={{ __html: product.price_html }} />
-    //     </div>
-    //   </Link>
-        ))}
-      </div>
+            .filter(product => product.status === 'publish')
+            .map(product => (
+            <Link href={`/products/${product.id}`} key={product.id} className="h-full">
+                <div className="bg-white rounded-lg shadow-md p-4 flex flex-col h-full">
+                <img
+                    src={product.images?.[0]?.src}
+                    alt={product.name}
+                    className="w-full h-48 object-cover rounded-md mb-4"
+                />
+                <h2 className="text-xl font-semibold text-black mb-2">{product.name}</h2>
+                <div className="mt-auto">
+                    <p
+                    className="text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: product.price_html }}
+                    />
+                </div>
+                </div>
+            </Link>
+            ))}
+        </div>
+
     </div>
   );
 }
