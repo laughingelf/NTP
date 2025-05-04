@@ -33,8 +33,8 @@ export default function ProductDetail() {
   }, [id])
 
   const handleAddToCart = () => {
-    if (!product) return
-    addToCart(product)
+    // if (!product) return
+    // addToCart(product)
     setAddedToCart(true)
     setTimeout(() => setAddedToCart(false), 2000)
   }
@@ -75,7 +75,7 @@ export default function ProductDetail() {
               />
 
               <button
-                onClick={handleAddToCart}
+                // onClick={handleAddToCart}
                 className={`w-full px-6 py-3 text-lg font-semibold rounded-xl shadow transition transform hover:scale-105 duration-200 ease-in-out ${
                   addedToCart
                     ? 'bg-green-500 text-white'
