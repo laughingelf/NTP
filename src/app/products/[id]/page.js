@@ -2,9 +2,8 @@
 
 import Layout from '../../components/Layout'
 import { useParams } from 'next/navigation'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { CartProvider } from '@/app/context/CartContext'
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -12,7 +11,6 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [addedToCart, setAddedToCart] = useState(false)
-  const { addToCart } = useContext(CartProvider)
 
   useEffect(() => {
     if (!id) return
@@ -33,8 +31,7 @@ export default function ProductDetail() {
   }, [id])
 
   const handleAddToCart = () => {
-    // if (!product) return
-    // addToCart(product)
+    // For now, this is just visual. You can replace this with actual cart logic (e.g., localStorage or context)
     setAddedToCart(true)
     setTimeout(() => setAddedToCart(false), 2000)
   }
@@ -47,7 +44,7 @@ export default function ProductDetail() {
       <div className="mt-12 px-6 max-w-6xl mx-auto">
         <Link
           href="/shop"
-          className="inline-block mb-6 px-6 py-3 bg-white text-black font-semibold font-medium rounded-xl shadow hover:bg-red-500 hover:scale-105 transition"
+          className="inline-block mb-6 px-6 py-3 bg-gray-900 text-white font-medium rounded-xl shadow hover:bg-red-500 transition"
         >
           ← Back to Shop
         </Link>
@@ -63,7 +60,7 @@ export default function ProductDetail() {
             <div>
               <h1 className="text-4xl text-black font-bold mb-4">{product.name}</h1>
               <div
-                className="text-gray-800 mb-4 leading-relaxed"
+                className="text-gray-700 mb-4 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
@@ -75,8 +72,8 @@ export default function ProductDetail() {
               />
 
               <button
-                // onClick={handleAddToCart}
-                className={`w-full px-6 py-3 text-lg font-semibold rounded-xl shadow transition transform hover:scale-105 duration-200 ease-in-out ${
+                onClick={handleAddToCart}
+                className={`w-full px-6 py-3 text-lg font-semibold rounded-xl shadow transition ${
                   addedToCart
                     ? 'bg-green-500 text-white'
                     : 'bg-red-600 text-white hover:bg-red-700'
