@@ -12,7 +12,7 @@ export default function ContactInfo() {
           <div className="flex flex-col items-center">
             <MapPin size={40} className="text-red-500 mb-4" />
             <h3 className="text-xl font-semibold text-gray-800 mb-2">Our Address</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-800 px-18">
               1325 Cattle Crossing Dr,<br />
               Fort Worth, TX 76131
             </p>

@@ -3,6 +3,7 @@
 import Layout from '../../components/Layout'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useCart } from '@/app/context/CartContext'
 import Link from 'next/link'
 
 export default function ProductDetail() {
@@ -11,6 +12,8 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [addedToCart, setAddedToCart] = useState(false)
+  const { addToCart } = useCart();
+
 
   useEffect(() => {
     if (!id) return
@@ -30,11 +33,27 @@ export default function ProductDetail() {
       })
   }, [id])
 
+  // const handleAddToCart = () => {
+  //   // For now, this is just visual. You can replace this with actual cart logic (e.g., localStorage or context)
+  //   setAddedToCart(true)
+  //   setTimeout(() => setAddedToCart(false), 2000)
+  // }
+
   const handleAddToCart = () => {
-    // For now, this is just visual. You can replace this with actual cart logic (e.g., localStorage or context)
-    setAddedToCart(true)
-    setTimeout(() => setAddedToCart(false), 2000)
-  }
+    if (!product?.id) return;
+    
+    const productToAdd = {
+      id: product.id,
+      name: product.name,
+      price: product.price, // add price if it's separate from price_html
+      image: product.images?.[0]?.src,
+    };
+  
+    addToCart(productToAdd);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2000);
+  };
+  
 
   if (loading) return <p className="p-6 text-center text-gray-500">Loading product...</p>
   if (error) return <p className="p-6 text-center text-red-500">Error: {error}</p>

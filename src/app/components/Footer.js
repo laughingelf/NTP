@@ -65,7 +65,7 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-gray-300">
             <li>📍 1325 Cattle Crossing Dr, Fort Worth, Texas 76131</li>
-            <li><a href='tel:9794518070'>📞 (979) 451-8070</a></li>
+            <li><a href='tel:9794518070'>📞 Text Us (979) 451-8070</a></li>
             <li><a href='mailto:admin@northtexasprint.com'>📧 admin@northtexasprint.com</a></li>
           </ul>
         </div>

@@ -33,7 +33,7 @@ const Navbar = () => {
           <Link href="/services" className="text-black hover:text-gray-900">Services</Link>
           <Link href="/shop" className="text-black hover:text-gray-900">Shop</Link>
           <Link href="/contact" className="text-black hover:text-gray-900">Contact</Link>
-          <Link href="/contact" className="text-2xl text-white bg-red-500 rounded-xl shadow-md shadow-black px-8 py-2 hover:shadow-lg hover:text-black transition">Get A Free Quote</Link>
+          <Link href="/contact" className="text-xl text-white bg-red-500 rounded-xl shadow-md shadow-black px-8 py-2 hover:shadow-lg hover:text-black transition">Get A Free Quote</Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -53,7 +53,7 @@ const Navbar = () => {
             <Link href="/services" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Services</Link>
             <Link href="/shop" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Shop</Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-black hover:text-gray-900">Contact</Link>
-            <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-white bg-red-500 w-full text-center text-2xl py-4 hover:text-gray-900">Get A Free Quote</Link>
+            <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-white bg-red-500 w-full text-center text-xl py-4 hover:text-gray-900">Get A Free Quote</Link>
           </div>
         </div>
       )}
