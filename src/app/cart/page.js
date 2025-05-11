@@ -9,7 +9,7 @@ export default function CartPage() {
     const { cartItems, removeFromCart } = useCart();
     return (
         <Layout>
-            <div className="p-6">
+            <div className="p-6 mt-12">
                 <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
                 {cartItems.length === 0 ? (
                     <p>No items in cart.</p>
