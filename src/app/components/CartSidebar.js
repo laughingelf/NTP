@@ -1,92 +1,110 @@
 'use client';
-
 import { useCart } from '../context/CartContext';
 import { X } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 
-export default function CartSidebar({ isOpen, onClose }) {
-  const { cartItems, removeFromCart } = useCart();
-  const sidebarRef = useRef();
+export default function CartSidebar() {
+  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Close sidebar when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen, onClose]);
-
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems
-    .reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0)
+    .reduce(
+      (acc, item) => acc + parseFloat(item.price?.replace(/[^0-9.]/g, '')) * item.quantity,
+      0
+    )
     .toFixed(2);
 
   return (
-    <div
-      className={`fixed top-0 right-0 h-full w-full md:w-[400px] bg-white shadow-lg z-50 transform transition-transform duration-300 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}
-      ref={sidebarRef}
-    >
-      <div className="flex justify-between items-center p-4 border-b">
-        <h2 className="text-xl font-bold">Your Cart ({totalQuantity})</h2>
-        <button onClick={onClose}>
-          <X className="w-6 h-6 text-gray-600 hover:text-red-500 transition" />
-        </button>
-      </div>
+    <>
+      {/* Toggle button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-24 right-2 md:top-1 md:right-1 z-50 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700"
+      >
+        🛒 {totalItems}
+      </button>
 
-      <div className="p-4 space-y-6 overflow-y-auto h-[calc(100vh-160px)]">
-        {cartItems.length === 0 ? (
-          <p className="text-gray-500 text-center">Your cart is empty.</p>
-        ) : (
-          cartItems.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center gap-4 border rounded-lg p-4 shadow-sm"
-            >
-              <img
-                src={item.image || '/placeholder.png'}
-                alt={item.name}
-                className="w-16 h-16 object-cover rounded"
-              />
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-800">{item.name}</h3>
-                <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
-                <p className="text-sm text-gray-500">Each: ${item.price}</p>
-                <p className="text-red-600 font-bold">
-                  Total: ${(parseFloat(item.price) * item.quantity).toFixed(2)}
-                </p>
-              </div>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-sm text-red-500 hover:underline"
-              >
-                Remove
-              </button>
-            </div>
-          ))
-        )}
-      </div>
-
-      {cartItems.length > 0 && (
-        <div className="border-t p-4 flex justify-between items-center">
-          <p className="text-lg font-semibold">Total: ${totalPrice}</p>
-          <button className="bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700 transition">
-            Checkout
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex justify-between items-center px-4 py-3 border-b">
+          <h2 className="text-xl font-bold">Your Cart</h2>
+          <button onClick={() => setIsOpen(false)}>
+            <X size={24} />
           </button>
         </div>
-      )}
-    </div>
+
+        <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-150px)]">
+          {cartItems.length === 0 ? (
+            <p className="text-gray-500 text-center">Your cart is empty.</p>
+          ) : (
+            cartItems.map((item) => {
+              const price = parseFloat(item.price?.replace(/[^0-9.]/g, '')) || 0;
+              return (
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between gap-4 mb-4"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-16 h-16 object-contain rounded border"
+                  />
+
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">{item.name}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, Math.max(item.quantity - 1, 1))
+                        }
+                        className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                      >
+                        −
+                      </button>
+                      <span className="text-sm">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <p className="text-red-600 font-semibold">
+                      ${(price * item.quantity).toFixed(2)}
+                    </p>
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="text-xs text-gray-500 hover:text-red-500 mt-1"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t">
+          <p className="text-lg font-semibold mb-3">Total: ${totalPrice}</p>
+          <Link
+            href="/cart"
+            className="block w-full text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"
+          >
+            Go to Checkout
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
