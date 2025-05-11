@@ -8,12 +8,17 @@ export default function CartSidebar() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
+  const parsePrice = (priceHtml) => {
+    if (!priceHtml) return 0;
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = priceHtml;
+    const text = tempDiv.textContent || tempDiv.innerText || '';
+    return parseFloat(text.replace(/[^0-9.]/g, '')) || 0;
+  };
+
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems
-    .reduce(
-      (acc, item) => acc + parseFloat(item.price?.replace(/[^0-9.]/g, '')) * item.quantity,
-      0
-    )
+    .reduce((acc, item) => acc + parsePrice(item.price) * item.quantity, 0)
     .toFixed(2);
 
   return (
@@ -33,7 +38,7 @@ export default function CartSidebar() {
         }`}
       >
         <div className="flex justify-between items-center px-4 py-3 border-b">
-          <h2 className="text-xl font-bold">Your Cart</h2>
+          <h2 className="text-xl text-gray-800 font-bold">Your Cart</h2>
           <button onClick={() => setIsOpen(false)}>
             <X size={24} />
           </button>
@@ -44,7 +49,7 @@ export default function CartSidebar() {
             <p className="text-gray-500 text-center">Your cart is empty.</p>
           ) : (
             cartItems.map((item) => {
-              const price = parseFloat(item.price?.replace(/[^0-9.]/g, '')) || 0;
+              const price = parsePrice(item.price);
               return (
                 <div
                   key={item.id}
@@ -57,7 +62,7 @@ export default function CartSidebar() {
                   />
 
                   <div className="flex-1">
-                    <p className="font-medium text-sm">{item.name}</p>
+                    <p className="font-medium text-gray-800 text-sm">{item.name}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <button
                         onClick={() =>
@@ -96,7 +101,7 @@ export default function CartSidebar() {
 
         {/* Footer */}
         <div className="p-4 border-t">
-          <p className="text-lg font-semibold mb-3">Total: ${totalPrice}</p>
+          <p className="text-lg font-semibold text-gray-800 mb-3">Total: ${totalPrice}</p>
           <Link
             href="/cart"
             className="block w-full text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"

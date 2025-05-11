@@ -102,7 +102,7 @@ export default function ProductDetail() {
                 min="1"
                 value={quantity}
                 onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                className="w-20 border border-gray-300 rounded px-3 py-1"
+                className="w-20 border border-gray-300 text-gray-800 rounded px-3 py-1"
               />
             </div>
 
