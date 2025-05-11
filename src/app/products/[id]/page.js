@@ -13,6 +13,8 @@ export default function ProductDetail() {
   const [error, setError] = useState(null)
   const [addedToCart, setAddedToCart] = useState(false)
   const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1)
+
 
 
   useEffect(() => {
@@ -39,20 +41,20 @@ export default function ProductDetail() {
   //   setTimeout(() => setAddedToCart(false), 2000)
   // }
 
-  const handleAddToCart = () => {
-    if (!product?.id) return;
-    
-    const productToAdd = {
-      id: product.id,
-      name: product.name,
-      price: product.price, // add price if it's separate from price_html
-      image: product.images?.[0]?.src,
+
+    const handleAddToCart = () => {
+      const productToAdd = {
+        id: product.id,
+        name: product.name,
+        price: product.price_html, // or numeric price if preferred
+        image: product.images?.[0]?.src,
+      };
+
+      addToCart(productToAdd, quantity); // <-- passing quantity
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
     };
-  
-    addToCart(productToAdd);
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-  };
+
   
 
   if (loading) return <p className="p-6 text-center text-gray-500">Loading product...</p>
@@ -89,6 +91,22 @@ export default function ProductDetail() {
                 className="text-2xl font-semibold text-red-600"
                 dangerouslySetInnerHTML={{ __html: product.price_html }}
               />
+
+            <div className="flex items-center gap-2">
+              <label htmlFor="quantity" className="text-gray-700 font-medium">
+                Quantity:
+              </label>
+              <input
+                type="number"
+                id="quantity"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                className="w-20 border border-gray-300 rounded px-3 py-1"
+              />
+            </div>
+
+
 
               <button
                 onClick={handleAddToCart}

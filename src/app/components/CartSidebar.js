@@ -35,28 +35,41 @@ export default function CartSidebar() {
         </div>
 
         <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-150px)]">
-          {cartItems.length === 0 ? (
-            <p className="text-gray-800">Your cart is empty.</p>
-          ) : (
-            cartItems.map((item) => (
-              <div key={item.id} className="flex items-center justify-between gap-2 border-b pb-2">
-                <img src={item.image} alt={item.name} className="w-12 h-12 rounded" />
+        {cartItems.map((item) => (
+            <div key={item.id} className="flex items-center justify-between gap-4 mb-4">
+                <img src={item.image} alt={item.name} className="w-16 h-16 object-contain rounded border" />
+                
                 <div className="flex-1">
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                <p className="font-medium text-sm">{item.name}</p>
+                <div className="flex items-center gap-2 mt-1">
+                    <button
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    >
+                    −
+                    </button>
+                    <span className="text-sm">{item.quantity}</span>
+                    <button
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    >
+                    +
+                    </button>
                 </div>
+                </div>
+
                 <div className="text-right">
-                  <p className="font-semibold text-red-600">${(item.price * item.quantity).toFixed(2)}</p>
-                  <button
+                <p className="text-red-600 font-semibold">${(parseFloat(item.price.replace(/[^0-9.]/g, '')) * item.quantity).toFixed(2)}</p>
+                <button
                     onClick={() => removeFromCart(item.id)}
-                    className="text-xs text-blue-500 hover:underline"
-                  >
+                    className="text-xs text-gray-500 hover:text-red-500 mt-1"
+                >
                     Remove
-                  </button>
+                </button>
                 </div>
-              </div>
-            ))
-          )}
+            </div>
+            ))}
+
         </div>
 
         {/* Footer */}
