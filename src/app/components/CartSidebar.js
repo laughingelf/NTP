@@ -33,7 +33,7 @@ export default function CartSidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed mt-4 top-0 right-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ${
+        className={`fixed mt-6 top-0 right-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -68,14 +68,14 @@ export default function CartSidebar() {
                         onClick={() =>
                           updateQuantity(item.id, Math.max(item.quantity - 1, 1))
                         }
-                        className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                        className="px-2 py-1 bg-gray-200 text-black rounded hover:bg-gray-300"
                       >
                         −
                       </button>
                       <span className="text-sm text-gray-800">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                        className="px-2 py-1 bg-gray-200 text-black rounded hover:bg-gray-300"
                       >
                         +
                       </button>
