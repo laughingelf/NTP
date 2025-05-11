@@ -5,45 +5,47 @@ import { useCart } from "../context/CartContext";
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
+  const parsePrice = (priceString) => {
+    const match = priceString?.match(/[\d,.]+/);
+    return match ? parseFloat(match[0].replace(/,/g, '')) : 0;
+  };
+
   const totalPrice = cartItems
-    .reduce(
-      (acc, item) => acc + (parseFloat(item.price?.replace(/[^0-9.]/g, '')) || 0) * item.quantity,
-      0
-    )
+    .reduce((acc, item) => acc + parsePrice(item.price) * item.quantity, 0)
     .toFixed(2);
 
   return (
     <Layout>
-      <div className="p-6 mt-12 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h1>
+      <div className="p-6 mt-12 max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-gray-800">Shopping Cart</h1>
 
         {cartItems.length === 0 ? (
-          <p className="text-gray-600">No items in cart.</p>
+          <div className="text-center text-gray-600 text-lg">Your cart is currently empty.</div>
         ) : (
-          <>
-            <ul className="space-y-6">
+          <div className="bg-white shadow-md rounded-lg p-6 space-y-6">
+            <ul className="divide-y">
               {cartItems.map((item) => {
-                const unitPrice = parseFloat(item.price?.replace(/[^0-9.]/g, '')) || 0;
+                const unitPrice = parsePrice(item.price);
                 const itemTotal = (unitPrice * item.quantity).toFixed(2);
 
                 return (
-                  <li key={item.id} className="flex items-center justify-between border-b pb-4">
+                  <li key={item.id} className="flex flex-col md:flex-row md:items-center justify-between py-4 gap-6">
                     <div className="flex items-center gap-4">
-                      <img src={item.image} alt={item.name} className="w-20 h-20 object-contain border rounded" />
+                      <img src={item.image} alt={item.name} className="w-24 h-24 object-contain border rounded-lg" />
                       <div>
-                        <p className="font-medium text-gray-800">{item.name}</p>
-                        <p className="text-sm text-gray-600">Unit Price: ${unitPrice.toFixed(2)}</p>
-                        <div className="flex items-center gap-2 mt-1">
+                        <h2 className="text-lg font-semibold text-gray-900">{item.name}</h2>
+                        <p className="text-sm text-gray-500 mt-1">Unit Price: ${unitPrice.toFixed(2)}</p>
+                        <div className="flex items-center gap-2 mt-2">
                           <button
                             onClick={() => updateQuantity(item.id, Math.max(item.quantity - 1, 1))}
-                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-lg font-bold"
                           >
                             −
                           </button>
-                          <span className="text-sm">{item.quantity}</span>
+                          <span className="text-base font-medium">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-lg font-bold"
                           >
                             +
                           </button>
@@ -51,11 +53,11 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    <div className="text-right">
-                      <p className="text-lg font-semibold text-red-600">${itemTotal}</p>
+                    <div className="flex flex-col items-end">
+                      <p className="text-xl font-bold text-red-600">${itemTotal}</p>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-xs text-gray-500 hover:text-red-500 mt-1"
+                        className="text-sm text-gray-400 hover:text-red-500 mt-2"
                       >
                         Remove
                       </button>
@@ -65,13 +67,13 @@ export default function CartPage() {
               })}
             </ul>
 
-            <div className="mt-8 text-right">
-              <p className="text-xl font-bold text-gray-800">Total: ${totalPrice}</p>
-              <button className="mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700">
+            <div className="flex justify-between items-center pt-6 border-t">
+              <p className="text-2xl font-semibold text-gray-800">Total: ${totalPrice}</p>
+              <button className="px-8 py-3 bg-red-600 text-white text-lg font-medium rounded-lg hover:bg-red-700 shadow">
                 Proceed to Checkout
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </Layout>
