@@ -43,17 +43,26 @@ export default function ProductDetail() {
 
 
     const handleAddToCart = () => {
+      const extractNumericPrice = (html) => {
+        if (!html) return 0;
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+        const text = tempDiv.textContent || tempDiv.innerText || "";
+        return parseFloat(text.replace(/[^0-9.]/g, "")) || 0;
+      };
+
       const productToAdd = {
         id: product.id,
         name: product.name,
-        price: product.price_html, // or numeric price if preferred
+        price: extractNumericPrice(product.price_html),
         image: product.images?.[0]?.src,
       };
 
-      addToCart(productToAdd, quantity); // <-- passing quantity
+      addToCart(productToAdd, quantity); // pass correct quantity
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
     };
+
 
   
 
