@@ -33,8 +33,8 @@ export default function CartSidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed mt-2 top-24 right-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 h-screen max-h-screen pt-26 w-full sm:w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ${
+    isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex justify-between items-center px-4 py-3 border-b">
@@ -44,7 +44,7 @@ export default function CartSidebar() {
           </button>
         </div>
 
-        <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-150px)]">
+        <div className="p-4 space-y-4 overflow-y-auto flex-1 min-h-0">  
           {cartItems.length === 0 ? (
             <p className="text-gray-500 text-center">Your cart is empty.</p>
           ) : (
