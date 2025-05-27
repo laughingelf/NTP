@@ -5,10 +5,15 @@ import { useCart } from "../context/CartContext";
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
-  const parsePrice = (priceString) => {
-    const match = priceString?.match(/[\d,.]+/);
-    return match ? parseFloat(match[0].replace(/,/g, '')) : 0;
-  };
+  const parsePrice = (price) => {
+  if (typeof price === "number") return price;
+  if (typeof price === "string") {
+    const match = price.match(/[\d,.]+/);
+    return match ? parseFloat(match[0].replace(/,/g, "")) : 0;
+  }
+  return 0;
+};
+
 
   const totalPrice = cartItems
     .reduce((acc, item) => acc + parsePrice(item.price) * item.quantity, 0)
