@@ -6,13 +6,13 @@ export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
   const parsePrice = (price) => {
-  if (typeof price === "number") return price;
-  if (typeof price === "string") {
-    const match = price.match(/[\d,.]+/);
-    return match ? parseFloat(match[0].replace(/,/g, "")) : 0;
-  }
-  return 0;
-};
+    if (typeof price === "number") return price;
+    if (typeof price === "string") {
+      const match = price.match(/[\d,.]+/);
+      return match ? parseFloat(match[0].replace(/,/g, "")) : 0;
+    }
+    return 0;
+  };
 
 
   const totalPrice = cartItems
